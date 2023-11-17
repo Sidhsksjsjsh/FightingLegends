@@ -18,13 +18,21 @@ Icon = "rbxassetid://",
 PremiumOnly = false
 })
 
+local T2 = Window:MakeTab({
+Name = "HALLOWEEN",
+Icon = "rbxassetid://",
+PremiumOnly = false
+})
+
 local egg = {}
 local boss = {}
 local dummies = {}
+local enemies = {}
 
 OrionLib:AddTable(workspace["_MAP"]["Eggs"],egg)
 OrionLib:AddTable(workspace["_MAP"]["Bosses"],boss)
 OrionLib:AddTable(workspace["_MAP"]["TrainDummy"],dummies)
+OrionLib:AddTable(Workspace["_THINGS"]["Coins"],enemies)
 
 T1:AddDropdown({
 Name = "Select Weapon",
