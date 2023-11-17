@@ -20,7 +20,7 @@ PremiumOnly = false
 
 local egg = {}
 local boss = {}
-OrionLib:AddTable(workspace._MAP.Eggs,shit)
+OrionLib:AddTable(workspace._MAP.Eggs,egg)
 OrionLib:AddTable(workspace._MAP.Bosses,boss)
 
 T1:AddDropdown({
