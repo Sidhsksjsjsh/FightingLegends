@@ -2,6 +2,21 @@
  More Feature Coming Soon!
 ]]
 
+local dum = nil
+local mt = getrawmetatable(game);
+setreadonly(mt,false)
+local namecall = mt.__namecall
+
+mt.__namecall = newcclosure(function(self, ...)
+	local Method = getnamecallmethod()
+	local Args = {...}
+
+	if Method == 'InvokeServer' and self.Name == 'AttackBoss' then
+        dum = Args[1]
+end
+	return namecall(self, ...) 
+end)
+
 local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/NMEHkVTb"))()
 local Window = OrionLib:MakeWindow({Name = "VIP Turtle Hub V3", HidePremium = false, SaveConfig = false, ConfigFolder = "TurtleFi"})
 local workspace = game:GetService("Workspace")
@@ -108,6 +123,18 @@ _G.Htc = Value
       while wait() do
         if _G.Htc == false then break end
         game:GetService("ReplicatedStorage")["Framework"]["Packages"]["Knit"]["Services"]["_HatchService"]["RF"]["BuyEgg"]:InvokeServer(_G.S_Egg,1)
+      end
+end    
+})
+
+T3:AddToggle({
+Name = "Auto Kill",
+Default = false,
+Callback = function(Value)
+_G.halloween = Value
+      while wait() do
+        if _G.halloween == false then break end
+        game:GetService("ReplicatedStorage")["Framework"]["Packages"]["Knit"]["Services"]["HalloweenService"]["RF"]["AttackBoss"]:InvokeServer(dum)
       end
 end    
 })
