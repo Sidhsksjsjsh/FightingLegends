@@ -18,7 +18,7 @@ Icon = "rbxassetid://",
 PremiumOnly = false
 })
 
-local T2 = Window:MakeTab({
+local T3 = Window:MakeTab({
 Name = "HALLOWEEN",
 Icon = "rbxassetid://",
 PremiumOnly = false
