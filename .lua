@@ -45,6 +45,20 @@ Icon = "rbxassetid://",
 PremiumOnly = false
 })
 
+local T6 = Window:MakeTab({
+Name = "Misc",
+Icon = "rbxassetid://",
+PremiumOnly = false
+})
+
+local S1 = T6:AddSection({
+Name = "VERIFY DISCORD AND YOUTUBE"
+})
+
+local S2 = T6:AddSection({
+Name = "EXCLUSIVE EGG"
+})
+
 local T3 = Window:MakeTab({
 Name = "HALLOWEEN",
 Icon = "rbxassetid://",
@@ -156,6 +170,18 @@ _G.B_B = Value
 end    
 })
 
+T1:AddToggle({
+Name = "Auto Claim Daily Rewards",
+Default = false,
+Callback = function(Value)
+_G.d_r = Value
+      while wait() do
+        if _G.d_r == false then break end
+        game:GetService("ReplicatedStorage")["Framework"]["Packages"]["Knit"]["Services"]["RewardsService"]["RF"]["ClaimTimeReward"]:InvokeServer()
+      end
+end    
+})
+
 T2:AddToggle({
 Name = "Hatch",
 Default = false,
@@ -200,6 +226,34 @@ _G.b_atk = Value
       while wait() do
         if _G.b_atk == false then break end
         game:GetService("ReplicatedStorage")["Framework"]["Packages"]["Knit"]["Services"]["BossesService"]["RF"]["AttackBoss"]:InvokeServer()
+      end
+end    
+})
+
+S1:AddTextbox({
+Name = "Verify Youtube",
+Default = "Insert Your Youtube ID",
+TextDisappear = true,
+Callback = function(Value)
+game:GetService("ReplicatedStorage")["Framework"]["Packages"]["Knit"]["Services"]["CodesService"]["RF"]["VerifyYoutube"]:InvokeServer(Value)
+end  
+})
+
+S1:AddButton({
+Name = "Verify Discord",
+Callback = function()
+      game:GetService("ReplicatedStorage")["Framework"]["Packages"]["Knit"]["Services"]["CodesService"]["RF"]["VerifyDiscord"]:InvokeServer()
+  end    
+})
+
+S2:AddToggle({
+Name = "Auto Claim Exclusive Egg",
+Default = false,
+Callback = function(Value)
+_G.e_egg = Value
+      while wait() do
+        if _G.e_egg == false then break end
+        game:GetService("ReplicatedStorage")["Framework"]["Packages"]["Knit"]["Services"]["RewardsService"]["RF"]["ClaimEventRewards"]:InvokeServer()
       end
 end    
 })
