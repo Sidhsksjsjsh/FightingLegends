@@ -20,8 +20,11 @@ PremiumOnly = false
 
 local egg = {}
 local boss = {}
---OrionLib:AddTable(workspace._MAP.Eggs,egg)
---OrionLib:AddTable(workspace._MAP.Bosses,boss)
+local dummies = {}
+
+OrionLib:AddTable(workspace["_MAP"]["Eggs"],egg)
+OrionLib:AddTable(workspace["_MAP"]["Bosses"],boss)
+OrionLib:AddTable(workspace["_MAP"]["TrainDummy"],dummies)
 
 T1:AddDropdown({
 Name = "Select Weapon",
@@ -32,7 +35,7 @@ game:GetService("ReplicatedStorage")["Framework"]["Packages"]["Knit"]["Services"
 end    
 })
 
---[[T2:AddDropdown({
+T2:AddDropdown({
 Name = "Select Egg",
 Default = egg[1],
 Options = egg,
@@ -40,7 +43,7 @@ Callback = function(Value)
 _G.S_Egg = Value
 end    
 })
-]]
+
 T1:AddToggle({
 Name = "Click",
 Default = false,
@@ -65,7 +68,31 @@ _G.Rb = Value
 end    
 })
 
---[[T2:AddToggle({
+T1:AddToggle({
+Name = "Buy Sword",
+Default = false,
+Callback = function(Value)
+_G.B_S = Value
+      while wait() do
+        if _G.B_S == false then break end
+        game:GetService("ReplicatedStorage")["Framework"]["Packages"]["Knit"]["Services"]["CoreService"]["RF"]["BuySword"]:InvokeServer()
+      end
+end    
+})
+
+T1:AddToggle({
+Name = "Buy Barbell",
+Default = false,
+Callback = function(Value)
+_G.B_B = Value
+      while wait() do
+        if _G.B_B == false then break end
+        game:GetService("ReplicatedStorage")["Framework"]["Packages"]["Knit"]["Services"]["CoreService"]["RF"]["BuyBarbell"]:InvokeServer()
+      end
+end    
+})
+
+T2:AddToggle({
 Name = "Hatch",
 Default = false,
 Callback = function(Value)
@@ -76,4 +103,3 @@ _G.Htc = Value
       end
 end    
 })
-]]
