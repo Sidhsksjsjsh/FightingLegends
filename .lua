@@ -59,8 +59,12 @@ local S2 = T6:AddSection({
 Name = "EXCLUSIVE EGG"
 })
 
+local S3 = T6:AddSection({
+Name = "EVENT BOOST CONFIG"
+})
+
 local T3 = Window:MakeTab({
-Name = "HALLOWEEN",
+Name = "Train Dummy",
 Icon = "rbxassetid://",
 PremiumOnly = false
 })
@@ -101,6 +105,15 @@ Default = boss[1],
 Options = boss,
 Callback = function(Value)
 _G.Boss_Atk = Value
+end    
+})
+
+T3:AddDropdown({
+Name = "Select Dummy",
+Default = dummies[#dummies],
+Options = dummies,
+Callback = function(Value)
+_G.Dummys_Atk2 = tonumber(Value)
 end    
 })
 
@@ -195,13 +208,13 @@ end
 })
 
 T3:AddToggle({
-Name = "Auto Kill",
+Name = "Auto Train",
 Default = false,
 Callback = function(Value)
-_G.halloween = Value
+_G.TD = Value
       while wait() do
-        if _G.halloween == false then break end
-        game:GetService("ReplicatedStorage")["Framework"]["Packages"]["Knit"]["Services"]["HalloweenService"]["RF"]["AttackBoss"]:InvokeServer(dum)
+        if _G.TD == false then break end
+        game:GetService("ReplicatedStorage")["Framework"]["Packages"]["Knit"]["Services"]["CoreService"]["RF"]["Click"]:InvokeServer(_G.Dummys_Atk2)
       end
 end    
 })
@@ -256,4 +269,13 @@ _G.e_egg = Value
         game:GetService("ReplicatedStorage")["Framework"]["Packages"]["Knit"]["Services"]["RewardsService"]["RF"]["ClaimEventRewards"]:InvokeServer()
       end
 end    
+})
+
+S3:AddButton({
+Name = "Infinite ALL Boost",
+Callback = function()
+      for _,v in pairs(game:GetService("ReplicatedStorage").EventsBoosts:GetChildren()) do
+	v.Value = math.huge
+      end
+  end    
 })
